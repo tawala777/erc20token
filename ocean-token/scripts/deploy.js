@@ -6,7 +6,7 @@
 // global scope, and execute the script.
 const hre = require("hardhat");
 
-async function main() {
+async function main_old() {
 
   const OceanToken = await hre.ethers.getContractFactory("OceanToken");
   const oceanToken = await OceanToken.deploy(100000000,50);
@@ -18,6 +18,17 @@ async function main() {
   );
 }
 
+async function main() {
+
+  const AamToken = await hre.ethers.getContractFactory("AamToken");
+  const aamToken = await AamToken.deploy(100000000,50);
+
+  await aamToken.deployed();
+
+  console.log(
+    `aamToken deployed to ${aamToken.address}`
+  );
+}
 // We recommend this pattern to be able to use async/await everywhere
 // and properly handle errors.
 main().catch((error) => {
